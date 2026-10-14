@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Habit Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Start page: pick or create a profile -->
+  <main id="start-view" class="app" hidden>
+    <header class="app-header start-header">
+      <h1>Habit Tracker</h1>
+      <p class="summary">Who's tracking today?</p>
+    </header>
+
+    <ul id="profile-list" class="profile-list"></ul>
+
+    <form id="profile-form" class="add-form profile-form">
+      <div class="field field-name">
+        <label for="profile-name">New profile</label>
+        <input id="profile-name" type="text" maxlength="30" autocomplete="off"
+               placeholder="e.g. Ariel" required>
+      </div>
+      <button type="submit">Create profile</button>
+    </form>
+
+    <p class="note">Profiles are saved only in this browser on this device and aren't password-protected.</p>
+  </main>
+
+  <!-- Tracker for the selected profile -->
+  <main id="tracker-view" class="app" hidden>
+    <header class="app-header">
+      <div class="tracker-top">
+        <button id="switch-profile" class="switch-btn" type="button">&#8249; Profiles</button>
+        <span id="profile-badge" class="profile-badge"></span>
+      </div>
+      <h1 id="tracker-title">Habit Tracker</h1>
+      <p id="summary" class="summary"></p>
+      <nav class="tabs" aria-label="Sections">
+        <button type="button" class="tab" data-tab="habits">&#9989; Habits</button>
+        <button type="button" class="tab" data-tab="game">&#9876;&#65039; Game</button>
+      </nav>
+    </header>
+
+    <!-- RPG game: spend challenge points on upgrades, streaks give buffs -->
+    <div id="game-tab" hidden></div>
+
+    <div id="habits-tab">
+    <section id="challenges" class="challenges" aria-label="Today's challenges"></section>
+    <section id="points" class="challenges points" aria-label="Points and streaks"></section>
+
+    <form id="add-form" class="add-form">
+      <div class="field field-name">
+        <label for="habit-name">Habit name</label>
+        <input id="habit-name" type="text" maxlength="60" autocomplete="off"
+               placeholder="e.g. Read a book" required>
+      </div>
+      <div class="field">
+        <label for="habit-time">Target time, minutes <span class="optional">(optional)</span></label>
+        <input id="habit-time" type="number" min="1" max="1440" step="1"
+               placeholder="e.g. 20" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="habit-frequency">Frequency</label>
+        <select id="habit-frequency">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="perWeek">Times per week</option>
+        </select>
+      </div>
+      <div class="field field-times" id="times-field" hidden>
+        <label for="habit-times">Times</label>
+        <input id="habit-times" type="number" min="1" max="7" value="3" inputmode="numeric">
+      </div>
+      <button type="submit">Add habit</button>
+    </form>
+
+    <p id="empty" class="empty" hidden>No habits yet. Add one above to start a streak.</p>
+    <ul id="habit-list" class="habit-list"></ul>
+    </div>
+  </main>
+
+  <script src="game.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
